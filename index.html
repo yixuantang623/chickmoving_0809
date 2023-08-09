@@ -799,7 +799,6 @@ section#photo .title .yellow {
 </style>
 
 <script type="text/javascript">
-window.dataLayer = window.dataLayer || [];
 	
 $(document).ready(function(){
   $('.showmenu').on('click', function(e){
@@ -865,9 +864,9 @@ $(".item9").click(function () {
   
 });
 
-
-$(".owl-carousel").owlCarousel({
-  loop: true,
+$(document).ready(function() {
+  $('.owl-carousel').owlCarousel({
+    loop: true,
   margin: 10,
   nav: true,
   responsive: {
@@ -879,12 +878,16 @@ $(".owl-carousel").owlCarousel({
     },
     
   }
+  });
 });
 
+
+window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-BERWJNX8SX');
+	
 </script>
 
 
