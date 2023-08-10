@@ -800,6 +800,35 @@ section#photo .title .yellow {
 </style>
 
 <script type="text/javascript">
+
+document.querySelectorAll("a[href^='#']").forEach(anchor => {
+    anchor.addEventListener("click", async (event) => {
+        event.preventDefault();
+
+        document.body.style.overflow = "hidden";
+        let imagesLoaded = 0;
+
+        const images = document.querySelectorAll("img");
+        images.forEach(img => {
+            img.addEventListener("load", () => {
+                imagesLoaded++;
+
+                if (imagesLoaded === images.length) {
+                    document.body.style.overflow = "auto";
+                    const target = document.querySelector(anchor.getAttribute("href"));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop,
+                            behavior: "smooth"
+                        });
+                    }
+                }
+            });
+        });
+
+        await Promise.all(Array.from(images).map(img => img.complete ? Promise.resolve() : new Promise(resolve => img.onload = img.onerror = resolve)));
+    });
+});
 	
 $(document).ready(function(){
   $('.showmenu').on('click', function(e){
